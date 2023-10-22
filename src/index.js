@@ -26,13 +26,14 @@ app.get('/', (req, res) => {
 
 app.post('/instagram-data', async (req, res) => {
     // 
-    console.log('req', req.body)
+    console.log('rohitsharma', req.body)
     try {
         //TODO get actor id
         const run = await apifyClient.actor("apify/instagram-scraper").run();
+        console.log("rohitsharma", run)
         const runDetails = await run.get();
         const instagramData = runDetails.output.body;
-        console.log("insta", instagramData)
+        console.log("instagram", instagramData)
         // res.json(instagramData);
         res.send("hi how are you")
     } catch (error) {
