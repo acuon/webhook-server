@@ -12,13 +12,13 @@ const apifyClient = new ApifyClient({
     token: 'apify_api_wbcHqR4sa12naomgrYsvPD72pgnWDx3uaPsp' 
 });
 
-// apifyClient.acts.listActs().then((actsList) => {
-//     actsList.items.forEach((actor) => {
-//         console.log(`Actor name: ${actor.name}, ID: ${actor.id}`);
-//     });
-// }).catch((err) => {
-//     console.error('Error fetching actors:', err);
-// });
+apifyClient.acts.listActs().then((actsList) => {
+    actsList.items.forEach((actor) => {
+        console.log(`Actor name: ${actor.name}, ID: ${actor.id}`);
+    });
+}).catch((err) => {
+    console.error('Error fetching actors:', err);
+});
 
 app.get('/', (req, res) => {
     res.send("hi")
