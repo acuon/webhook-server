@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 app.post('/instagram-data', async (req, res) => {
     // 
-    console.log('instagram_scrapper', req.body)
+    console.log('instagram_scrapper_1', req.body)
     try {
         //TODO get actor id
         // Starts an actor and waits for it to finish.
@@ -35,7 +35,7 @@ app.post('/instagram-data', async (req, res) => {
         // Fetches results from the actor's dataset.
         const { items } = await client.dataset(defaultDatasetId).listItems();
 
-        console.log("instagram_scrapper", items)
+        console.log("instagram_scrapper_2", items)
 
         // const run = await apifyClient.actor("apify/instagram-scraper").run();
         // console.log("rohitsharma", run)
