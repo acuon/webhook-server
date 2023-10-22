@@ -9,7 +9,7 @@ app.use(express.json())
 // app.use(apifyRouter)
 
 const apifyClient = new ApifyClient({
-    token: 'apify_api_wbcHqR4sa12naomgrYsvPD72pgnWDx3uaPsp' 
+    token: 'apify_api_rIly1RukC3Sh6Xga7UkfpFb55joFAj35dGcH' 
 });
 
 // apifyClient.acts.listActs().then((actsList) => {
@@ -30,7 +30,7 @@ app.post('/instagram-data-v2', async (req, res) => {
     try {
         //TODO get actor id
         // Starts an actor and waits for it to finish.
-        const { defaultDatasetId } = await apifyClient.actor('apify/instagram-scraper').call();
+        const { defaultDatasetId } = await apifyClient.actor('apify/instagram-post-scraper').call();
 
         // Fetches results from the actor's dataset.
         const { items } = await apifyClient.dataset(defaultDatasetId).listItems();
