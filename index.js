@@ -32,6 +32,7 @@ app.post('/instagram-data', async (req, res) => {
         const run = await apifyClient.actor("shu8hvrXbJbY3Eb9W").run();
         const runDetails = await run.get();
         const instagramData = runDetails.output.body;
+        console.log("insta", instagramData)
         res.json(instagramData);
     } catch (error) {
         console.error('Error fetching data from Apify:', error);
