@@ -29,7 +29,7 @@ const client = new ApifyClient({
 // Prepare Actor input
 const input = {
     "username": [
-        "rohit_sharma.86"
+        "promptdrivenarts"
     ],
     "resultsLimit": 30
 };
