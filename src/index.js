@@ -26,16 +26,22 @@ app.get('/', (req, res) => {
 
 app.post('/instagram-data', async (req, res) => {
     // 
-    console.log('rohitsharma', req.body)
+    console.log('instagram_scrapper', req.body)
     try {
         //TODO get actor id
-        const run = await apifyClient.actor("apify/instagram-scraper").run();
-        console.log("rohitsharma", run)
-        const runDetails = await run.get();
-        const instagramData = runDetails.output.body;
-        console.log("instagram", instagramData)
-        // res.json(instagramData);
-        res.send("hi how are you")
+        // Starts an actor and waits for it to finish.
+        const { defaultDatasetId } = await client.actor('john-doe/my-cool-actor').call();
+
+        // Fetches results from the actor's dataset.
+        const { items } = await client.dataset(defaultDatasetId).listItems();
+
+        console.log("instagram_scrapper", items)
+
+        // const run = await apifyClient.actor("apify/instagram-scraper").run();
+        // console.log("rohitsharma", run)
+        // const runDetails = await run.get();
+        // const instagramData = runDetails.output.body;
+        // console.log("instagram", instagramData)
     } catch (error) {
         console.error('Error fetching data from Apify:', error);
         res.status(500).send('Internal Server Error');
