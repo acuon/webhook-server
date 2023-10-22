@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     res.send("hi")
 })
 
-app.post('/instagram-data', async (req, res) => {
+app.post('/instagram-data-v2', async (req, res) => {
     // 
     console.log('instagram_scrapper_1', req.body)
     try {
