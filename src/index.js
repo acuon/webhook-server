@@ -64,8 +64,8 @@ app.get('/getData', (req, res) => {
         // let temp =`${items}`
         // const data  = {item: items}
         console.log(items)
-        await UserData.create({userData: items})
-        res.send("hi done")
+        // await UserData.create({userData: items})
+        res.send(items)
     })();
 })
 
