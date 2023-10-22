@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/instagram-data', async (req, res) => {
-    // res.send("hi how are you")
+    // 
     console.log('req', req.body)
     try {
         //TODO get actor id
@@ -33,7 +33,8 @@ app.post('/instagram-data', async (req, res) => {
         const runDetails = await run.get();
         const instagramData = runDetails.output.body;
         console.log("insta", instagramData)
-        res.json(instagramData);
+        // res.json(instagramData);
+        res.send("hi how are you")
     } catch (error) {
         console.error('Error fetching data from Apify:', error);
         res.status(500).send('Internal Server Error');
