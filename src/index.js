@@ -1,7 +1,7 @@
 const express = require("express")
 // const {connection} = require("./config/connection")
 const {apifyRouter} = require("./router/apifyrouter")
-const { ApifyClient } = require('apify');
+const { ApifyClient } = require('apify-client');
 require("dotenv").config()
 
 const app = express()
