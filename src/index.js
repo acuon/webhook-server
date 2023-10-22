@@ -30,7 +30,7 @@ app.post('/instagram-data', async (req, res) => {
     try {
         //TODO get actor id
         // Starts an actor and waits for it to finish.
-        const { defaultDatasetId } = await client.actor('john-doe/my-cool-actor').call();
+        const { defaultDatasetId } = await client.actor('apify/instagram-scraper').call();
 
         // Fetches results from the actor's dataset.
         const { items } = await client.dataset(defaultDatasetId).listItems();
