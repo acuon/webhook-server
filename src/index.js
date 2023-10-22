@@ -1,16 +1,41 @@
-const express = require("express")
+const express = require("express");
+const mongoose = require("mongoose")
 // const {connection} = require("./config/connection")
 const {apifyRouter} = require("./router/apifyrouter")
 const { ApifyClient } = require('apify-client');
+
+const {UserData} = require('./model/userData');
+
 require("dotenv").config()
 
 const app = express()
+
+mongoose.connect(process.env.mongoDB).then(()=> console.log("db connected")).catch((err) => console.log("not connected", err))
+
 app.use(express.json())
 // app.use(apifyRouter)
 
 const apifyClient = new ApifyClient({
     token: 'apify_api_rIly1RukC3Sh6Xga7UkfpFb55joFAj35dGcH' 
 });
+
+
+
+// Initialize the ApifyClient with API token
+const client = new ApifyClient({
+    token: 'apify_api_rIly1RukC3Sh6Xga7UkfpFb55joFAj35dGcH',
+});
+
+// Prepare Actor input
+const input = {
+    "username": [
+        "rohit_sharma.86"
+    ],
+    "resultsLimit": 30
+};
+
+
+
 
 // apifyClient.acts.listActs().then((actsList) => {
 //     actsList.items.forEach((actor) => {
@@ -20,8 +45,28 @@ const apifyClient = new ApifyClient({
 //     console.error('Error fetching actors:', err);
 // });
 
-app.get('/', (req, res) => {
-    res.send("hi")
+app.get('/getData', (req, res) => {
+    (async () => {
+        // Run the Actor and wait for it to finish
+        const run = await client.actor("nH2AHrwxeTRJoN5hX").call(input);
+    
+        // Fetch and print Actor results from the run's dataset (if any)
+        console.log('Results from dataset');
+        const items  = await client.dataset(run.defaultDatasetId).listItems();
+        console.log('items', items)
+        // items.forEach((item) => {
+        //     console.dir(item);
+        //     let user = UserData({user: 'rohit'})
+        // user.save()
+        // });
+    
+        
+        // let temp =`${items}`
+        // const data  = {item: items}
+        console.log(items)
+        await UserData.create({userData: items})
+        res.send("hi done")
+    })();
 })
 
 app.post('/instagram-data-v2', async (req, res) => {
