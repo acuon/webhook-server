@@ -12,13 +12,13 @@ const apifyClient = new ApifyClient({
     token: 'apify_api_wbcHqR4sa12naomgrYsvPD72pgnWDx3uaPsp' 
 });
 
-apifyClient.acts.listActs().then((actsList) => {
-    actsList.items.forEach((actor) => {
-        console.log(`Actor name: ${actor.name}, ID: ${actor.id}`);
-    });
-}).catch((err) => {
-    console.error('Error fetching actors:', err);
-});
+// apifyClient.acts.listActs().then((actsList) => {
+//     actsList.items.forEach((actor) => {
+//         console.log(`Actor name: ${actor.name}, ID: ${actor.id}`);
+//     });
+// }).catch((err) => {
+//     console.error('Error fetching actors:', err);
+// });
 
 app.get('/', (req, res) => {
     res.send("hi")
@@ -29,7 +29,7 @@ app.post('/instagram-data', async (req, res) => {
     console.log('req', req.body)
     try {
         //TODO get actor id
-        const run = await apifyClient.actor("shu8hvrXbJbY3Eb9W").run();
+        const run = await apifyClient.actor("apify/instagram-scraper").run();
         const runDetails = await run.get();
         const instagramData = runDetails.output.body;
         console.log("insta", instagramData)
